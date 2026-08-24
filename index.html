@@ -58,6 +58,14 @@
         </div>
     </section>
 
+    <section id="competitions" class="min-h-screen py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500">Competitions & Hackathons</h2>
+            <p class="text-center text-gray-400 mb-20">Where I test my skills under pressure</p>
+            <div id="competitions-container" class="grid md:grid-cols-2 gap-8"></div>
+        </div>
+    </section>
+
     <section id="contact" class="min-h-screen flex items-center justify-center py-20 px-4">
         <div class="max-w-4xl w-full text-center">
             <h2 class="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-pink-400">Let's Connect</h2>
@@ -160,6 +168,39 @@
               "description": "An interactive web platform that maps live solidarity protests, marches, and vigils for Palestine across the Arab world. Features a Leaflet.js map with colour-coded markers, real-time statistics, multi‑step form for adding events, and three verification levels (official, community, unverified). Built with pure HTML/CSS/JS and integrates with a Flask backend API.",
               "tech": ["HTML5", "CSS3", "JavaScript", "Leaflet.js", "REST API", "GitHub Pages"],
               "link": "https://redaoulhamri.github.io/nosrat-filistine"
+            },
+            {
+                title: "Smart Agri — AI Agricultural Advisor (Ramadania Hackathon)",
+                description: "Built in 3 days at the Ramadania Hackathon, EuroMed University, Fès. An AI-powered agricultural advisor to help farmers optimize yield and make data-driven decisions, with NLP speech-to-text and a wake-word activation concept. Team project.",
+                tech: ["HTML", "CSS", "JavaScript", "Python", "AI/NLP", "Speech-to-Text"],
+                link: "#"
+            },
+            {
+                title: "VC Brain — AI Startup Discovery Agent (Hack-Nation Global AI Hackathon)",
+                description: "Built for the 'VC Brain' challenge at Hack-Nation's Global AI Hackathon (online). An AI agent that navigates and collects data on startup founders across platforms, surfacing promising founders to investors before they give up — proactively matching founders with investors. Team project.",
+                tech: ["Python", "AI Agents", "APIs", "HTML", "CSS", "JavaScript"],
+                link: "#"
+            },
+            {
+                title: "Kirae Gest — Car Rental Agency Management Platform",
+                description: "A full-stack platform for managing car rental agencies: agencies, cars, clients, contracts, and expenses. Built a FastAPI backend with a multi-language (Arabic/English/French) frontend, supporting admin and user roles. Sole developer.",
+                tech: ["Python", "FastAPI", "SQLAlchemy", "HTML", "CSS", "JavaScript"],
+                link: "https://kiraegest.com"
+            }
+        ];
+
+        const competitionsData = [
+            {
+                name: "Ramadania Hackathon",
+                event: "EuroMed University, Fès",
+                date: "2026 (Ramadan)",
+                description: "3-day hackathon. Built an AI-powered agricultural advisor with the team. Didn't win the prize, but gained mentorship and hands-on feedback."
+            },
+            {
+                name: "Hack-Nation Global AI Hackathon",
+                event: "Online",
+                date: "2026",
+                description: "Worked on the 'VC Brain' challenge — an AI agent that discovers and surfaces promising startup founders to investors."
             }
         ];
 
@@ -210,6 +251,18 @@
             `;
         }
 
+        function generateCompetitionCard(comp, index) {
+            const colorGradient = colors[index % colors.length];
+            return `
+                <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-yellow-500 transition-all hover:scale-105">
+                    <div class="text-sm text-gray-400 mb-2">${comp.date}</div>
+                    <h3 class="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r ${colorGradient}">${comp.name}</h3>
+                    <p class="text-purple-300 font-semibold mb-2">${comp.event}</p>
+                    <p class="text-gray-300">${comp.description}</p>
+                </div>
+            `;
+        }
+
         // ============================================
         // 🚀 RENDER EVERYTHING ON PAGE LOAD
         // ============================================
@@ -235,6 +288,10 @@
             const total = document.documentElement.scrollHeight - window.innerHeight;
             const progress = (window.scrollY / total) * 100;
             document.getElementById('progress-bar').style.width = progress + '%';
+        });
+        const competitionsContainer = document.getElementById('competitions-container');
+        competitionsData.forEach((comp, index) => {
+            competitionsContainer.innerHTML += generateCompetitionCard(comp, index);
         });
     </script>
 </body>
